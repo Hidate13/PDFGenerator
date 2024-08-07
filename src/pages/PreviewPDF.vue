@@ -17,9 +17,10 @@
               <v-btn @click="downloadPdf" color="info" class="mr-2"
                 >Save PDF</v-btn
               >
-              <v-btn @click="downloadWord" color="primary" class="mr-2"
+              <v-btn @click="downloadWordDocument" color="primary" class="mr-2"
                 >Save Word</v-btn
               >
+
               <v-btn @click="closePreview" color="error">Close</v-btn>
             </div>
           </v-card-text>
@@ -57,6 +58,27 @@ export default {
     //   link.download = "document.pdf";
     //   link.click();
     // };
+
+    const downloadWordDocument = async () => {
+      try {
+        const response = await fetch(
+          "https://script.google.com/macros/s/AKfycbzReiwTkqwNSZrtVp6Gw_TukN4bQDemwV-1sHYG2-YVlAN4XH9fIFe8cXVgeUooub6d/exec"
+        );
+        const data = await response.json();
+
+        if (response.ok) {
+          // Directly download the Word document
+          const link = document.createElement("a");
+          link.href = data.wordUrl;
+          link.download = "document.docx";
+          link.click();
+        } else {
+          console.error("Failed to generate document:", data.error);
+        }
+      } catch (error) {
+        console.error("Error fetching Word document:", error);
+      }
+    };
 
     const downloadPdf = () => {
       const downloadUrl = getDownloadUrl(decodedPdfUrl.value);
@@ -140,6 +162,7 @@ export default {
       downloadPdf,
       downloadWord,
       closePreview,
+      downloadWordDocument,
     };
   },
 };
