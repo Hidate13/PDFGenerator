@@ -33,7 +33,6 @@
 <script>
 import { ref, onMounted, computed } from "vue";
 import { useRoute, useRouter } from "vue-router";
-import { saveAs } from "file-saver";
 
 export default {
   setup() {
@@ -122,37 +121,6 @@ export default {
         return blob;
       } catch (error) {
         console.error("Error fetching PDF:", error);
-        throw error;
-      }
-    };
-
-    const convertPdfToWord = async (pdfBlob) => {
-      const apiKey =
-        "wahyu.hidate.hidayat@gmail.com_JvMlZB579TprJZSzS6UjwVnsCNHqdriIaQJ4btvlnMsRjha5SCL0a9mWbTtQ17vY";
-      const formData = new FormData();
-      formData.append("file", pdfBlob, "document.pdf");
-      formData.append("name", "document.docx"); // Desired name for the Word document
-
-      try {
-        const response = await fetch(
-          "https://api.pdf.co/v1/pdf/convert/to/doc",
-          {
-            method: "POST",
-            headers: {
-              "x-api-key": apiKey,
-            },
-            body: formData,
-          }
-        );
-
-        const result = await response.json();
-        if (result.error) {
-          console.error("Error converting PDF to Word:", result.message);
-          throw new Error(result.message);
-        }
-        return result.url; // URL of the converted Word document
-      } catch (error) {
-        console.error("Error during conversion:", error);
         throw error;
       }
     };
