@@ -1,11 +1,8 @@
 <template>
   <v-app>
     <v-main>
-      <Navigation />
       <router-view />
-      <AppFooter
-        style="position: fixed; width: 100%; left: 0; right: 0; z-index: 9999"
-      />
+      <PrintPdf />
     </v-main>
   </v-app>
 </template>

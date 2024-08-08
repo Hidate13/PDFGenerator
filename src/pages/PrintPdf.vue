@@ -37,15 +37,12 @@ export default {
         const result = await response.json();
         console.log("PDF generation response:", result);
 
-        // Ensure the URL is in the correct format
         const pdfUrl = result.pdfId || result.pdfUrl;
         if (!pdfUrl) {
           throw new Error("PDF URL is missing from the response.");
         }
 
         console.log("PDF URL:", pdfUrl);
-
-        // Navigate to the PreviewPage with the URL as a route parameter
         router.push({
           name: "PreviewPage",
           params: { pdfUrl: encodeURIComponent(pdfUrl) },

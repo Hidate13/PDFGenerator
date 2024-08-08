@@ -50,13 +50,6 @@ export default {
     };
 
     console.log(route.params.pdfUrl + " test the pdfUrl outside");
-    // const downloadPdf = () => {
-    //   const downloadUrl = getDownloadUrl(decodedPdfUrl.value);
-    //   const link = document.createElement("a");
-    //   link.href = downloadUrl;
-    //   link.download = "document.pdf";
-    //   link.click();
-    // };
 
     const downloadWordDocument = async () => {
       try {
@@ -66,7 +59,6 @@ export default {
         const data = await response.json();
 
         if (response.ok) {
-          // Directly download the Word document
           const link = document.createElement("a");
           link.href = data.wordUrl;
           link.download = "document.docx";
@@ -100,7 +92,7 @@ export default {
     };
 
     const closePreview = () => {
-      router.push("/print-pdf"); // Adjust the route as needed
+      router.push("/"); //
     };
 
     const decodedPdfUrl = computed(() => {
