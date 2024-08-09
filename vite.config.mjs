@@ -53,4 +53,35 @@ export default defineConfig({
       rewrite: (path) => path.replace(/^\/api/, ""),
     },
   },
+  test: {
+    globals: true,
+    environment: "jsdom",
+    setupFiles: "./tests/setup.js",
+    alias: {
+      "@": "/src", // Adjust this alias based on your project structure
+    },
+    transformMode: {
+      web: [/\.[tj]sx?$/],
+    },
+  },
+  css: {
+    modules: {
+      scopeBehaviour: "local",
+      localsConvention: "camelCaseOnly",
+    },
+  },
+  esbuild: {
+    loader: {
+      ".js": "jsx",
+      ".ts": "tsx",
+      ".css": "file", // Add this line to handle CSS imports
+    },
+  },
+
+  // Use mock for Vuetify components
+  // resolve: {
+  //   alias: {
+  //     vuetify: Vuetify,
+  //   },
+  // },
 });
