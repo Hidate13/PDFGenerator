@@ -3,7 +3,6 @@ const { test, expect } = require("@playwright/test");
 
 test.describe("PDF Generator Component", () => {
   test.beforeEach(async ({ page }) => {
-    // Replace with the URL where your component is hosted or rendered
     await page.goto("http://localhost:3000");
   });
 
