@@ -18,9 +18,5 @@ test.describe("PDF Generator Component", () => {
 
     // Click the button
     await buttonLocator.click();
-
-    // Optionally, you can verify the button click by checking some expected behavior
-    // For example, you might check if the loading indicator appears or if navigation occurs.
-    // This part can be skipped if you only need to ensure the button is clickable.
   });
 });
