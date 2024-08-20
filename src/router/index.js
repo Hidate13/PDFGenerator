@@ -12,6 +12,7 @@ const routes = [
     path: "/preview/:pdfUrl",
     name: "PreviewPage",
     component: PreviewPage,
+    props: (route) => ({ ...route.query }),
   },
 ];
 

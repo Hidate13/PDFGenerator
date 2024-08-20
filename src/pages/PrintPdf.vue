@@ -32,20 +32,28 @@ export default {
       loading.value = true;
       try {
         const response = await fetch(
-          "https://script.google.com/macros/s/AKfycbwZqhqDQvRUkU6urCAD7WTn_AoUjv4sTIiTm_ey90IZnC99t2PLKc6Z6a6N8d3q3BIl/exec"
+          "https://script.google.com/macros/s/AKfycbxHUcGd-VNfMOaIX5WrpDHhmlfBb9zo21kyzhDVZQu99FDf0QnsqjT7OkOrL8u-WJe1/exec"
         );
         const result = await response.json();
         console.log("PDF generation response:", result);
+        console.log("wordUrl response:", result.wordUrl);
 
         const pdfUrl = result.pdfId || result.pdfUrl;
-        if (!pdfUrl) {
+        const wordUrl = result.wordUrl;
+        if (!pdfUrl || !wordUrl) {
           throw new Error("PDF URL is missing from the response.");
         }
 
         console.log("PDF URL:", pdfUrl);
+        console.log("Word URL:", wordUrl);
         router.push({
           name: "PreviewPage",
-          params: { pdfUrl: encodeURIComponent(pdfUrl) },
+          params: {
+            pdfUrl: encodeURIComponent(pdfUrl),
+          },
+          query: {
+            wordUrl: wordUrl,
+          },
         });
       } catch (error) {
         console.error("Error fetching PDF:", error);
