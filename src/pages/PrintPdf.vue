@@ -32,7 +32,7 @@ export default {
       loading.value = true;
       try {
         const response = await fetch(
-          "https://script.google.com/macros/s/AKfycbxHUcGd-VNfMOaIX5WrpDHhmlfBb9zo21kyzhDVZQu99FDf0QnsqjT7OkOrL8u-WJe1/exec"
+          "https://script.google.com/macros/s/AKfycbxV9f5RPLT6F7pqZvQdfnEitwY2SMQGd7HznGjX10lsVE9wRkouq2kbMRB7iowQTTLepg/exec"
         );
         const result = await response.json();
         console.log("PDF generation response:", result);
